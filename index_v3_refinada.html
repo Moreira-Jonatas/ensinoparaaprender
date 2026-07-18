@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensine para Aprender® | Kelly C. Education</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fafaf9; }
+        h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; }
+
+        .navy { color: #0f1b33; }
+        .bg-navy { background-color: #0f1b33; }
+        .gold { color: #d4a843; }
+        .bg-gold { background-color: #d4a843; }
+        .border-gold { border-color: #d4a843; }
+
+        .btn-gold {
+            background: #d4a843; color: #0f1b33; font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(212, 168, 67, 0.4); }
+
+        .btn-outline {
+            border: 2px solid #d4a843; color: #d4a843; font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover { background: #d4a843; color: #0f1b33; }
+
+        .card-hover { transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(15, 27, 51, 0.12); }
+
+        .card-level {
+            background: white; border-radius: 20px; padding: 2rem;
+            border: 1px solid rgba(15, 27, 51, 0.06);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .card-level:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(15, 27, 51, 0.12);
+            border-color: rgba(212, 168, 67, 0.3);
+        }
+        .card-level.popular { border: 2px solid #d4a843; box-shadow: 0 10px 40px rgba(212, 168, 67, 0.15); }
+
+        .gold-line { width: 50px; height: 2px; background: #d4a843; }
+
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15, 27, 51, 0.85) 0%, rgba(15, 27, 51, 0.3) 50%, rgba(15, 27, 51, 0.7) 100%);
+        }
+
+        .badge {
+            display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+        }
+
+        .seal {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(212, 168, 67, 0.12); color: #d4a843;
+            padding: 0.4rem 1rem; border-radius: 999px;
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
+        }
+
+        .check-item {
+            display: flex; align-items: flex-start; gap: 0.625rem;
+            font-size: 0.875rem; color: #4b5563; line-height: 1.5;
+        }
+        .check-item::before {
+            content: ''; flex-shrink: 0; width: 18px; height: 18px;
+            margin-top: 2px; border-radius: 50%; background: #d4a843;
+            display: flex; align-items: center; justify-content: center;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%230f1b33' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: 10px; background-position: center; background-repeat: no-repeat;
+        }
+
+        .testimonial-card {
+            background: white; border-radius: 16px; padding: 1.5rem;
+            border: 1px solid rgba(15, 27, 51, 0.04);
+        }
+
+        @media (max-width: 768px) { .hero-title { font-size: 2.25rem !important; } }
+        ::selection { background: #d4a843; color: #0f1b33; }
+
+        .floating-wpp {
+            position: fixed; bottom: 24px; right: 24px; z-index: 100;
+            width: 56px; height: 56px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+        }
+        .floating-wpp:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <!-- WHATSAPP FLOATING -->
+    <a href="https://wa.me/5519986001534?utm_source=site&utm_medium=whatsapp&utm_campaign=lead" target="_blank" class="floating-wpp">
+        <svg fill="white" viewBox="0 0 24 24" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- NAVBAR -->
+    <nav class="bg-navy/95 backdrop-blur-sm fixed w-full z-50 border-b border-gold/10">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <img src="./anexos/1000234965.png" alt="Ensine para Aprender" class="h-9 w-auto brightness-0 invert">
+                <span class="text-white font-semibold text-sm hidden sm:block">Ensine para Aprender<sup class="text-gold text-xs">®</sup></span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="#niveis" class="text-white/70 hover:text-gold text-sm transition">Níveis</a>
+                <a href="#metodologia" class="text-white/70 hover:text-gold text-sm transition">Metodologia</a>
+                <a href="#depoimentos" class="text-white/70 hover:text-gold text-sm transition">Depoimentos</a>
+                <a href="#sobre" class="text-white/70 hover:text-gold text-sm transition">Sobre</a>
+                <a href="#niveis" class="btn-gold px-5 py-2 rounded-full text-xs">Quero Aprender</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative min-h-screen flex items-center bg-navy overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="./anexos/1000234964.jpg" alt="Kelly C. Santos" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-6 py-32 w-full">
+            <div class="max-w-3xl">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="gold-line"></div>
+                    <span class="text-gold/80 uppercase tracking-[0.2em] text-sm font-medium">Kelly C. Education</span>
+                    <span class="seal ml-2">Marca Registrada INPI</span>
+                </div>
+                <h1 class="hero-title text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+                    Inglês com Música<br>
+                    <span class="text-gold">Neurociência e Propósito</span>
+                </h1>
+                <p class="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-8">
+                    Uma metodologia autoral que integra educação musical, neurociência da aprendizagem
+                    e ensino de idiomas. Mais de <strong class="text-white">20 anos de experiência</strong>
+                    transformando a maneira como você aprende inglês.
+                </p>
+                <div class="flex flex-wrap gap-3 mb-10">
+                    <span class="bg-white/10 text-white/80 px-3 py-1.5 rounded-full text-xs"> Pedagogo</span>
+                    <span class="bg-white/10 text-white/80 px-3 py-1.5 rounded-full text-xs"> Licenciada em Inglês</span>
+                    <span class="bg-white/10 text-white/80 px-3 py-1.5 rounded-full text-xs"> Teacher de Piano</span>
+                    <span class="bg-white/10 text-white/80 px-3 py-1.5 rounded-full text-xs"> Musicoterapeuta</span>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#niveis" class="btn-gold px-8 py-4 rounded-full text-base inline-flex items-center gap-2">
+                        Quero comecar agora
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#metodologia" class="btn-outline px-8 py-4 rounded-full text-base">
+                        Conhecer metodologia
+                    </a>
+                </div>
+                <div class="flex items-center gap-8 mt-10 pt-6 border-t border-white/10">
+                    <div class="text-center">
+                        <div class="text-gold text-2xl font-bold font-['DM_Serif_Display']">20+</div>
+                        <div class="text-white/50 text-xs uppercase tracking-wider mt-1">Anos de Experiência</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gold text-2xl font-bold font-['DM_Serif_Display']">3</div>
+                        <div class="text-white/50 text-xs uppercase tracking-wider mt-1">Níveis de Ensino</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gold text-2xl font-bold font-['DM_Serif_Display']">1</div>
+                        <div class="text-white/50 text-xs uppercase tracking-wider mt-1">Metodologia Exclusiva</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span class="badge bg-gold/20 text-gold mb-3 inline-block">Diferenciais</span>
+                <h2 class="text-4xl md:text-5xl text-navy leading-tight mb-4">
+                    Por que aprender com música?
+                </h2>
+                <div class="gold-line mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-8 rounded-2xl bg-gray-50 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mx-auto mb-5"><span class="text-gold text-2xl"></span></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Piano Pedagógico</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">O piano como ferramenta de ensino para fortalecer memória, coordenacao e aprendizagem musical integrada ao idioma.</p>
+                </div>
+                <div class="text-center p-8 rounded-2xl bg-gray-50 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mx-auto mb-5"><span class="text-gold text-2xl"></span></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Neurociência Aplicada</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Estratégias baseadas em neurociência para potencializar memória, atenção e retenção do aprendizado.</p>
+                </div>
+                <div class="text-center p-8 rounded-2xl bg-gray-50 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mx-auto mb-5"><span class="text-gold text-2xl"></span></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Técnica de Shadowing</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Método comprovado para desenvolver pronúncia, compreensão auditiva e fluência espontânea.</p>
+                </div>
+                <div class="text-center p-8 rounded-2xl bg-gray-50 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mx-auto mb-5"><span class="text-gold text-2xl"></span></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Comunicação Real</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Aprendizagem ativa e significativa com foco em comunicação desde o primeiro módulo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CREDENCIAIS / SELOS -->
+    <section class="py-10 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+                <span class="flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-sm"> Marca Registrada ENSINE PARA APRENDER no INPI</span>
+                <span class="flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-sm"> 20+ anos de experiência em educação</span>
+                <span class="flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-sm"> Metodologia Autoral com Musicoterapia</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NIVEL -->
+    <section id="niveis" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span class="badge bg-gold/20 text-gold mb-3 inline-block">Escolha seu nível</span>
+                <h2 class="text-4xl md:text-5xl text-navy leading-tight mb-4">Qual e o seu momento?</h2>
+                <p class="text-gray-500 max-w-lg mx-auto">Três níveis estruturados para você evoluir do zero a fluência com acompanhamento guiado.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="card-level card-hover">
+                    <div class="flex items-center justify-between mb-5">
+                        <span class="text-3xl"></span>
+                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">Level 1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-1">Start</h3>
+                    <p class="text-gray-500 text-sm mb-1">Do Zero ao Essencial</p>
+                    <p class="text-gray-400 text-xs mb-5">Iniciante (A1-A2)</p>
+                    <div class="space-y-3 mb-8">
+                        <div class="check-item">Vocabulario essencial</div>
+                        <div class="check-item">Pronúncia desde a primeira aula</div>
+                        <div class="check-item">Inglês no ensino do piano</div>
+                        <div class="check-item">Compreensão e comunicação básica</div>
+                    </div>
+                    <a href="https://wa.me/5519986001534?text=Quero%20comprar%20o%20Level%201%20-%20Start" target="_blank" class="btn-gold w-full py-3.5 rounded-full text-sm font-bold block text-center">
+                        Comprar Agora
+                    </a>
+                </div>
+                <div class="card-level popular card-hover relative">
+                    <div class="absolute -top-3 left-6 bg-gold text-navy text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Mais Escolhido</div>
+                    <div class="flex items-center justify-between mb-5 mt-1">
+                        <span class="text-3xl"></span>
+                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">Level 2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-1">Connect</h3>
+                    <p class="text-gray-500 text-sm mb-1">Compreender e Comunicar</p>
+                    <p class="text-gray-400 text-xs mb-5">Intermediário (B1-B2)</p>
+                    <div class="space-y-3 mb-8">
+                        <div class="check-item">Conversacao guiada</div>
+                        <div class="check-item">Técnica de Shadowing</div>
+                        <div class="check-item">Listening com músicas</div>
+                        <div class="check-item">Fluência e confiança para comunicar</div>
+                    </div>
+                    <a href="https://wa.me/5519986001534?text=Quero%20comprar%20o%20Level%202%20-%20Connect" target="_blank" class="btn-gold w-full py-3.5 rounded-full text-sm font-bold block text-center">
+                        Quero Evoluir
+                    </a>
+                </div>
+                <div class="card-level card-hover">
+                    <div class="flex items-center justify-between mb-5">
+                        <span class="text-3xl"></span>
+                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">Level 3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-1">Communicate</h3>
+                    <p class="text-gray-500 text-sm mb-1">Fluência e Performance</p>
+                    <p class="text-gray-400 text-xs mb-5">Avançado (C1-C2)</p>
+                    <div class="space-y-3 mb-8">
+                        <div class="check-item">Fluência espontânea</div>
+                        <div class="check-item">Pronúncia avançada</div>
+                        <div class="check-item">Expressoes idiomáticas</div>
+                        <div class="check-item">Contextos acadêmicos e profissionais</div>
+                    </div>
+                    <a href="https://wa.me/5519986001534?text=Quero%20comprar%20o%20Level%203%20-%20Communicate" target="_blank" class="btn-gold w-full py-3.5 rounded-full text-sm font-bold block text-center">
+                        Quero Ser Fluente
+                    </a>
+                </div>
+            </div>
+            <p class="text-center text-gray-400 text-xs mt-6">Pagamento seguro via Kiwify | Parcelamento em ate 12x</p>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span class="badge bg-gold/20 text-gold mb-3 inline-block">Depoimentos</span>
+                <h2 class="text-4xl md:text-5xl text-navy leading-tight mb-4">Quem aprende, recomenda</h2>
+                <div class="gold-line mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="testimonial-card card-hover">
+                    <div class="flex items-center gap-1 mb-3">
+                        <span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">"A metodologia da Kelly transformou meu aprendizado. Em 3 meses consegui acompanhar músicas em inglês e melhorar minha pronúncia de forma natural."</p>
+                    <div class="text-xs text-gray-400">— Maria A., aluna Level 2</div>
+                </div>
+                <div class="testimonial-card card-hover">
+                    <div class="flex items-center gap-1 mb-3">
+                        <span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">"A abordagem com piano e neurociência fez toda a diferença. Finalmente consegui aprender inglês depois de anos tentando métodos tradicionais."</p>
+                    <div class="text-xs text-gray-400">— Carlos S., aluno Level 1</div>
+                </div>
+                <div class="testimonial-card card-hover">
+                    <div class="flex items-center gap-1 mb-3">
+                        <span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span><span class="text-gold"></span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">"A técnica de Shadowing mudou minha pronunciacao. Hoje consigo me comunicar com confiança em reuniões de trabalho. Recomendo demais!"</p>
+                    <div class="text-xs text-gray-400">— Ana P., aluna Level 3</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METODOLOGIA -->
+    <section id="metodologia" class="py-20 bg-navy relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-14 items-center">
+                <div>
+                    <span class="badge bg-gold/20 text-gold mb-3 inline-block">Metodologia</span>
+                    <h2 class="text-4xl md:text-5xl text-white leading-tight mb-6">
+                        Ensine para Aprender<sup class="text-gold text-2xl"></sup>
+                    </h2>
+                    <p class="text-white/70 leading-relaxed mb-6">
+                        Uma metodologia autoral pensada por <strong class="text-white">Kelly C.</strong>, especialista em Ensino e Aprendizagem,
+                        que integra <strong class="text-white">Educação, Musicoterapia e Ensino de Idiomas</strong>.
+                    </p>
+                    <p class="text-white/70 leading-relaxed mb-6">
+                        "Acredito que a música transforma o aprendizado porque vi isso acontecer centenas de vezes
+                        em mais de 20 anos de sala de aula. Cada aluno que passa pelo meu método descobre que
+                        aprender inglês pode ser natural, prazeroso e profundo." — Kelly C.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gold text-lg"></span>
+                            <span class="text-white/80 text-sm">Piano como ferramenta pedagógica</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-gold text-lg"></span>
+                            <span class="text-white/80 text-sm">Neurociência da aprendizagem</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-gold text-lg"></span>
+                            <span class="text-white/80 text-sm">Técnica de Shadowing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="./anexos/1000234956.jpg" alt="Kelly C. - Metodologia" class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute -bottom-4 -left-4 bg-gold text-navy px-5 py-3 rounded-xl font-bold text-sm">
+                        Metodologia Autoral
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-14 items-center">
+                <div class="relative">
+                    <img src="./anexos/1000234958.webp" alt="Kelly C. Santos" class="rounded-2xl shadow-xl w-full">
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-gold rounded-full flex items-center justify-center text-navy font-bold text-sm text-center leading-tight p-4">20+ anos</div>
+                </div>
+                <div>
+                    <span class="badge bg-gold/20 text-gold mb-3 inline-block">Sobre</span>
+                    <h2 class="text-4xl md:text-5xl text-navy leading-tight mb-6">Kelly C. Santos</h2>
+                    <div class="gold-line mb-6"></div>
+                    <p class="text-gray-600 leading-relaxed mb-5">
+                        Pedagoga | Licenciada em Língua Inglesa | Teacher de Piano | Musicoterapeuta |
+                        Especialista em Ensino e Aprendizagem e em Tradução da Língua Inglesa.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-5">
+                        Criadora da metodologia <strong>"Ensine para Aprender"<sup class="text-xs"></sup></strong>,
+                        Kelly C. une sua formação multidisciplinar para oferecer um ensino de inglês
+                        que vai além do idioma — e uma experiência de desenvolvimento cognitivo e musical.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Pedagoga</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Lic. em Inglês</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Teacher de Piano</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Musicoterapeuta</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Pós-graduada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-20 bg-navy text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <span class="badge bg-gold/20 text-gold mb-3 inline-block">Marca Registrada INPI</span>
+            <h2 class="text-4xl md:text-5xl text-white leading-tight mb-6">
+                Pronto para transformar<br>seu inglês com a música?
+            </h2>
+            <p class="text-white/50 mb-10 max-w-md mx-auto">
+                Escolha seu nível e descubra como a metodologia <strong class="text-white">Ensine para Aprender<sup class="text-xs"></sup></strong>
+                pode revolucionar seu aprendizado.
+            </p>
+            <a href="#niveis" class="btn-gold px-10 py-4 rounded-full text-base font-bold inline-flex items-center gap-2">
+                Quero comecar agora
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#080f1f] py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="./anexos/1000234965.png" alt="" class="h-7 w-auto brightness-0 invert opacity-70">
+                        <span class="text-white/50 text-sm font-semibold">Ensine para Aprender<sup class="text-xs"></sup></span>
+                    </div>
+                    <p class="text-white/30 text-sm leading-relaxed">Metodologia autoral de Kelly C. Santos. Educação, Música e Idiomas.</p>
+                </div>
+                <div>
+                    <h4 class="text-white/60 text-sm font-semibold uppercase tracking-wider mb-4">Contato</h4>
+                    <p class="text-white/30 text-sm">(19) 98600-1534</p>
+                    <p class="text-white/30 text-sm">@kellycassidori</p>
+                    <p class="text-white/30 text-sm">kellycassidori (Instagram)</p>
+                </div>
+                <div>
+                    <h4 class="text-white/60 text-sm font-semibold uppercase tracking-wider mb-4">Marca Registrada</h4>
+                    <p class="text-white/30 text-sm">Ensine para Aprender e marca registrada no INPI. Todos os direitos reservados.</p>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-white/5 text-center">
+                <p class="text-white/20 text-xs">&copy; 2026 Kelly C. Education — Ensine para Aprender. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

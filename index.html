@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelly C. Santos | Ensine para Aprender</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f7f4; color: #0f1b33; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+        .bg-navy { background-color: #0f1b33; }
+        .bg-gold { background-color: #d4a843; }
+        .gold { color: #d4a843; }
+        .card { background: white; border-radius: 20px; padding: 2rem; transition: all 0.4s; border: 1px solid rgba(15,27,51,0.06); }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(15,27,51,0.1); }
+        .tag { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(212,168,67,0.12); color: #d4a843; }
+        ::selection { background: #d4a843; color: #0f1b33; }
+    </style>
+</head>
+<body>
+    <section class="bg-navy py-20 text-center">
+        <div class="max-w-3xl mx-auto px-5">
+            <span class="tag mb-3 inline-block">Projeto em desenvolvimento</span>
+            <h1 class="text-4xl md:text-6xl text-white leading-tight mb-3">Kelly C. Santos</h1>
+            <p class="text-gold text-xl font-['Cormorant_Garamond'] italic">Ensine para Aprender</p>
+            <p class="text-white/40 text-sm mt-4 max-w-md mx-auto">Selecione uma das versoes abaixo para visualizar o site em desenvolvimento.</p>
+        </div>
+    </section>
+
+    <section class="py-16 max-w-5xl mx-auto px-5">
+        <div class="grid md:grid-cols-3 gap-6">
+            <a href="index_v3_refinada.html" class="card no-underline block">
+                <span class="tag mb-3 inline-block">Recomendado</span>
+                <h2 class="text-2xl text-navy mb-2">V3 — Refinada</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">Equilibrio entre autoridade e conversao. Selo INPI, depoimentos, WhatsApp flutuante. A versao mais completa.</p>
+            </a>
+            <a href="index_v5_experiencia_integrada.html" class="card no-underline block">
+                <span class="tag mb-3 inline-block">Storytelling</span>
+                <h2 class="text-2xl text-navy mb-2">V5 — Experiencia</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">Cards expansivos, navegacao fluida, feed Instagram. Foco na historia profissional da Kelly.</p>
+            </a>
+            <a href="index_v6_academia_conhecimento.html" class="card no-underline block">
+                <span class="tag mb-3 inline-block">Conversao</span>
+                <h2 class="text-2xl text-navy mb-2">V6 — Academia</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">3 colunas de servico, blog, CTA direto para WhatsApp. Foco em contratacao de servicos.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-navy py-8 text-center">
+        <p class="text-white/20 text-xs">&copy; 2026 Kelly C. Santos — Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelly C. Santos | Ensine para Aprender</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #faf9f7; }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+
+        .bg-navy { background-color: #0f1b33; }
+        .bg-gold { background-color: #d4a843; }
+        .gold { color: #d4a843; }
+        .border-gold { border-color: #d4a843; }
+
+        .btn-gold {
+            background: #d4a843; color: #0f1b33; font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(212, 168, 67, 0.4); }
+
+        .btn-outline {
+            border: 1.5px solid #d4a843; color: #d4a843; font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover { background: #d4a843; color: #0f1b33; }
+
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15, 27, 51, 0.7) 0%, rgba(15, 27, 51, 0.2) 40%, rgba(15, 27, 51, 0.6) 100%);
+        }
+
+        .card-area {
+            background: white; border-radius: 20px; padding: 2rem;
+            border: 1px solid rgba(15, 27, 51, 0.06);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative; overflow: hidden;
+        }
+        .card-area:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(15, 27, 51, 0.1); }
+        .card-area .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease; opacity: 0; }
+        .card-area.active .expand-content { max-height: 400px; opacity: 1; }
+
+        .nav-link { position: relative; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+        .nav-link:hover { color: #d4a843; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+            background: #d4a843; transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .gold-line { width: 50px; height: 2px; background: #d4a843; }
+
+        .instagram-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+        .instagram-grid .ig-item { aspect-ratio: 1; background: #e5e3df; border-radius: 4px; overflow: hidden; position: relative; }
+
+        .pill {
+            display: inline-block; padding: 0.2rem 0.8rem; border-radius: 999px;
+            font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+            background: rgba(212, 168, 67, 0.12); color: #d4a843;
+        }
+
+        .floating-nav {
+            position: fixed; top: 50%; right: 20px; transform: translateY(-50%);
+            z-index: 50; display: flex; flex-direction: column; gap: 12px;
+        }
+        .floating-nav a {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: rgba(15, 27, 51, 0.15); transition: all 0.3s;
+            position: relative;
+        }
+        .floating-nav a:hover, .floating-nav a.active { background: #d4a843; transform: scale(1.3); }
+        .floating-nav a::after {
+            content: attr(data-label); position: absolute; right: 24px; top: 50%;
+            transform: translateY(-50%); white-space: nowrap;
+            background: #0f1b33; color: white; font-size: 0.65rem;
+            padding: 4px 10px; border-radius: 6px; opacity: 0;
+            transition: opacity 0.3s; pointer-events: none;
+        }
+        .floating-nav a:hover::after { opacity: 1; }
+
+        @media (max-width: 768px) {
+            .floating-nav { display: none; }
+            .hero-title { font-size: 2.5rem !important; }
+        }
+
+        ::selection { background: #d4a843; color: #0f1b33; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 bg-navy/90 backdrop-blur-md border-b border-gold/10">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <span class="text-white font-semibold text-sm tracking-wide">Kelly C. Santos</span>
+                <span class="text-gold/60 text-xs border-l border-gold/20 pl-2">Ensine para Aprender</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#quem-sou" class="nav-link">Quem Sou</a>
+                <a href="#metodo" class="nav-link">Método</a>
+                <a href="#musicoterapia" class="nav-link">Musicoterapia</a>
+                <a href="#cursos" class="nav-link">Cursos</a>
+                <a href="#cursos" class="btn-gold px-4 py-1.5 rounded-full text-xs">Começar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FLOATING NAV -->
+    <nav class="floating-nav">
+        <a href="#hero" data-label="Início" class="active"></a>
+        <a href="#quem-sou" data-label="Quem Sou"></a>
+        <a href="#metodo" data-label="Método"></a>
+        <a href="#musicoterapia" data-label="Musicoterapia"></a>
+        <a href="#cursos" data-label="Cursos"></a>
+        <a href="#instagram" data-label="Instagram"></a>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="relative min-h-screen flex items-center bg-navy overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="./anexos/1000234960.jpg" alt="Kelly C. ao piano" class="w-full h-full object-cover object-center">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        <div class="relative max-w-6xl mx-auto px-6 py-32 w-full">
+            <div class="max-w-2xl">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="gold-line"></div>
+                    <span class="text-gold/70 uppercase tracking-[0.2em] text-xs font-medium">Kelly C. Santos</span>
+                </div>
+                <h1 class="hero-title text-5xl md:text-7xl text-white leading-[1.05] font-['Cormorant_Garamond'] font-bold mb-6">
+                    Educação, Música e<br>
+                    <span class="gold">Desenvolvimento Humano</span>
+                </h1>
+                <p class="text-white/60 text-lg max-w-xl leading-relaxed mb-8">
+                    Pedagoga, Musicoterapeuta e Teacher de Piano. Há mais de 20 anos transformando vidas
+                    através da educação musical e do ensino de idiomas.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#quem-sou" class="btn-gold px-8 py-3.5 rounded-full text-sm inline-flex items-center gap-2">
+                        Conheça minha história
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                    </a>
+                    <a href="#cursos" class="btn-outline px-8 py-3.5 rounded-full text-sm">
+                        Ver cursos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUEM SOU -->
+    <section id="quem-sou" class="py-28 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-5 gap-14 items-center">
+                <div class="md:col-span-2">
+                    <div class="relative">
+                        <img src="./anexos/1000234958.webp" alt="Kelly C. Santos" class="rounded-2xl shadow-xl w-full">
+                        <div class="absolute -bottom-3 -right-3 bg-gold text-navy px-5 py-2.5 rounded-xl font-bold text-sm">
+                            20+ anos
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <span class="pill mb-3 inline-block">Quem Sou</span>
+                    <h2 class="text-4xl md:text-5xl text-navy leading-tight mb-4">Kelly C. Santos</h2>
+                    <div class="gold-line mb-6"></div>
+                    <p class="text-gray-600 leading-relaxed mb-5">
+                        Pedagoga | Licenciada em Língua Inglesa | Teacher de Piano | Musicoterapeuta |
+                        Especialista em Ensino e Aprendizagem e em Tradução da Língua Inglesa.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-5">
+                        Criadora da metodologia <strong>Ensine para Aprender</strong>, uma abordagem que integra
+                        educação, música e neurociência para transformar a maneira como as pessoas aprendem inglês.
+                    </p>
+                    <p class="text-gray-500 leading-relaxed mb-6 text-sm">
+                        Minha jornada comecou no Conservatório Beethoven em 1998, onde aprendi a ler música.
+                        Desde então,uni minha paixão pela música com a educação, construindo uma carreira
+                        que hoje integra aulas de inglês, piano, musicoterapia e formação docente.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Pedagoga</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Lic. em Inglês</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Teacher de Piano</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Musicoterapeuta</span>
+                        <span class="bg-navy text-white text-xs px-3 py-1.5 rounded-full">Pós-graduada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METODO -->
+    <section id="metodo" class="py-28 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="pill mb-3 inline-block">Metodologia Autoral</span>
+                <h2 class="text-4xl md:text-5xl text-navy leading-tight mb-3">Ensine para Aprender</h2>
+                <p class="text-gray-500 max-w-lg mx-auto">Registrada no INPI. Uma abordagem que une música, neurociência e educação.</p>
+                <div class="gold-line mx-auto mt-4"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="text-center p-8 bg-white rounded-2xl shadow-sm border border-gray-50">
+                    <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mx-auto mb-5">
+                        <span class="text-gold text-2xl">&#9835;</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-3 font-['Cormorant_Garamond']">Piano Pedagógico</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        O piano como ferramenta de ensino para fortalecer memória, atenção e aprendizagem musical integrada ao idioma.
+                    </p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-2xl shadow-sm border border-gray-50">
+                    <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mx-auto mb-5">
+                        <span class="text-gold text-2xl">&#9774;</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-3 font-['Cormorant_Garamond']">Neurociência Aplicada</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Estratégias baseadas em neurociência para potencializar memória, atenção e retenção do aprendizado.
+                    </p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-2xl shadow-sm border border-gray-50">
+                    <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mx-auto mb-5">
+                        <span class="text-gold text-2xl">&#9834;</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-3 font-['Cormorant_Garamond']">Shadowing & Fluência</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Técnica de Shadowing para desenvolver pronúncia, compreensão auditiva e fluência espontânea em inglês.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MUSICOTERAPIA -->
+    <section id="musicoterapia" class="py-28 bg-navy relative overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.04]">
+            <img src="./anexos/1000234121.webp" alt="" class="w-full h-full object-cover">
+        </div>
+        <div class="relative max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-14 items-center">
+                <div>
+                    <span class="pill mb-3 inline-block bg-gold/15 text-gold">Musicoterapia</span>
+                    <h2 class="text-4xl md:text-5xl text-white leading-tight mb-6">
+                        O poder curativo<br>da música
+                    </h2>
+                    <p class="text-white/60 leading-relaxed mb-6">
+                        A musicoterapia utiliza a música como ferramenta terapêutica para promover saúde,
+                        bem-estar e desenvolvimento cognitivo, emocional e social.
+                    </p>
+                    <p class="text-white/50 leading-relaxed mb-8 text-sm">
+                        Atendimento individualizado e humanizado, baseado em mais de 20 anos de experiência
+                        em educação musical e desenvolvimento humano.
+                    </p>
+                    <a href="https://wa.me/5519986001534?text=Ol%C3%A1%20Kelly%2C%20gostaria%20de%20saber%20mais%20sobre%20Musicoterapia" target="_blank"
+                       class="btn-gold px-8 py-3.5 rounded-full text-sm inline-flex items-center gap-2 font-semibold">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Agendar Consulta
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white/5 rounded-2xl p-6 text-center border border-white/5">
+                        <span class="text-gold text-2xl font-bold font-['Cormorant_Garamond']">+20</span>
+                        <p class="text-white/40 text-xs mt-1">anos de experiência</p>
+                    </div>
+                    <div class="bg-white/5 rounded-2xl p-6 text-center border border-white/5">
+                        <span class="text-gold text-2xl font-bold font-['Cormorant_Garamond']">3</span>
+                        <p class="text-white/40 text-xs mt-1">áreas de atuação</p>
+                    </div>
+                    <div class="bg-white/5 rounded-2xl p-6 text-center border border-white/5">
+                        <span class="text-gold text-2xl font-bold font-['Cormorant_Garamond']">1</span>
+                        <p class="text-white/40 text-xs mt-1">método exclusivo</p>
+                    </div>
+                    <div class="bg-white/5 rounded-2xl p-6 text-center border border-white/5">
+                        <span class="text-gold text-2xl font-bold font-['Cormorant_Garamond']">INPI</span>
+                        <p class="text-white/40 text-xs mt-1">marca registrada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURSOS / AREAS DE ATUACAO -->
+    <section id="cursos" class="py-28 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span class="pill mb-3 inline-block">Áreas de Atuação</span>
+                <h2 class="text-4xl md:text-5xl text-navy leading-tight mb-3">Descubra seus serviços</h2>
+                <p class="text-gray-500 max-w-lg mx-auto">Clique nos cards para explorar cada área e encontrar o que você procura.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="card-area" onclick="this.classList.toggle('active')">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-3xl">&#127926;</span>
+                        <span class="text-xs text-gold font-semibold uppercase tracking-wider">Clique para expandir</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-2 font-['Cormorant_Garamond']">Cursos & Formação</h3>
+                    <p class="text-gray-500 text-sm mb-4">Inglês com Música | Piano | Pedagogia</p>
+                    <div class="expand-content">
+                        <div class="border-t border-gray-100 pt-4 mt-2 space-y-3">
+                            <p class="text-gray-600 text-sm">Cursos de inglês em 3 níveis (Start, Connect, Communicate) com metodologia musical.</p>
+                            <p class="text-gray-600 text-sm">Aulas de piano para iniciantes ao avançado.</p>
+                            <p class="text-gray-600 text-sm">Formação docente com recursos musicais.</p>
+                            <a href="#" class="btn-gold inline-block px-5 py-2 rounded-full text-xs mt-2">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-area" onclick="this.classList.toggle('active')">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-3xl">&#9835;</span>
+                        <span class="text-xs text-gold font-semibold uppercase tracking-wider">Clique para expandir</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-2 font-['Cormorant_Garamond']">Musicoterapia</h3>
+                    <p class="text-gray-500 text-sm mb-4">Atendimento individual e grupos</p>
+                    <div class="expand-content">
+                        <div class="border-t border-gray-100 pt-4 mt-2 space-y-3">
+                            <p class="text-gray-600 text-sm">Sessões de musicoterapia para crianças, adultos e idosos.</p>
+                            <p class="text-gray-600 text-sm">Desenvolvimento cognitivo e emocional através da música.</p>
+                            <p class="text-gray-600 text-sm">Atendimento presencial em Valinhos e online.</p>
+                            <a href="https://wa.me/5519986001534?text=Ol%C3%A1%20Kelly%2C%20gostaria%20de%20agendar%20uma%20consulta%20de%20Musicoterapia" target="_blank"
+                               class="btn-gold inline-flex items-center gap-1 px-5 py-2 rounded-full text-xs mt-2">
+                                Agendar consulta
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-area" onclick="this.classList.toggle('active')">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-3xl">&#128218;</span>
+                        <span class="text-xs text-gold font-semibold uppercase tracking-wider">Clique para expandir</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-2 font-['Cormorant_Garamond']">Mentoria & Palestras</h3>
+                    <p class="text-gray-500 text-sm mb-4">Para educadores e instituições</p>
+                    <div class="expand-content">
+                        <div class="border-t border-gray-100 pt-4 mt-2 space-y-3">
+                            <p class="text-gray-600 text-sm">Palestras sobre educação musical, neurociência e aprendizagem.</p>
+                            <p class="text-gray-600 text-sm">Mentoria para professores que desejam integrar música ao ensino.</p>
+                            <p class="text-gray-600 text-sm">Consultoria educacional para escolas e instituições.</p>
+                            <a href="https://wa.me/5519986001534?text=Ol%C3%A1%20Kelly%2C%20gostaria%20de%20saber%20mais%20sobre%20Mentoria%20e%20Palestras" target="_blank"
+                               class="btn-gold inline-block px-5 py-2 rounded-full text-xs mt-2">Entrar em contato</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM FEED -->
+    <section id="instagram" class="py-20 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <span class="pill mb-3 inline-block">Acompanhe nas redes</span>
+                <h2 class="text-3xl md:text-4xl text-navy leading-tight mb-3">@kellycassidori</h2>
+                <p class="text-gray-500 text-sm">Siga no Instagram para acompanhar novidades, dicas e conteúdo exclusivo.</p>
+            </div>
+            <div class="instagram-grid max-w-md mx-auto mb-8">
+                <a href="https://www.instagram.com/kellycassidori/" target="_blank" class="ig-item bg-gray-200 flex items-center justify-center text-gray-400 text-xs">&#9835;</a>
+                <a href="https://www.instagram.com/kellycassidori/" target="_blank" class="ig-item bg-gray-200 flex items-center justify-center text-gray-400 text-xs">&#9835;</a>
+                <a href="https://www.instagram.com/kellycassidori/" target="_blank" class="ig-item bg-gray-200 flex items-center justify-center text-gray-400 text-xs">&#9835;</a>
+                <a href="https://www.instagram.com/kellycassidori/" target="_blank" class="ig-item bg-gray-200 flex items-center justify-center text-gray-400 text-xs">&#9835;</a>
+                <a href="https://www.instagram.com/kellycassidori/" target="_blank" class="ig-item bg-gray-200 flex items-center justify-center text-gray-400 text-xs">&#9835;</a>
+                <a href="https://www.instagram.com/kellycassidori/" target="_blank" class="ig-item bg-gray-200 flex items-center justify-center text-gray-400 text-xs">&#9835;</a>
+            </div>
+            <div class="text-center">
+                <a href="https://www.instagram.com/kellycassidori/" target="_blank"
+                   class="btn-outline px-6 py-2.5 rounded-full text-sm inline-flex items-center gap-2">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    Seguir no Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white/70 text-sm font-semibold mb-3">Kelly C. Santos</h4>
+                    <p class="text-white/30 text-xs leading-relaxed">Educação, Música e Desenvolvimento Humano.</p>
+                </div>
+                <div>
+                    <h4 class="text-white/70 text-sm font-semibold mb-3">Navegue</h4>
+                    <div class="space-y-1.5">
+                        <a href="#quem-sou" class="block text-white/30 text-xs hover:text-gold transition">Quem Sou</a>
+                        <a href="#metodo" class="block text-white/30 text-xs hover:text-gold transition">Método</a>
+                        <a href="#musicoterapia" class="block text-white/30 text-xs hover:text-gold transition">Musicoterapia</a>
+                        <a href="#cursos" class="block text-white/30 text-xs hover:text-gold transition">Cursos</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white/70 text-sm font-semibold mb-3">Contato</h4>
+                    <p class="text-white/30 text-xs">(19) 98600-1534</p>
+                    <p class="text-white/30 text-xs">@kellycassidori</p>
+                </div>
+                <div>
+                    <h4 class="text-white/70 text-sm font-semibold mb-3">Marca Registrada</h4>
+                    <p class="text-white/30 text-xs">Ensine para Aprender e marca registrada no INPI.</p>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-6 text-center">
+                <p class="text-white/15 text-xs">&copy; 2026 Kelly C. Santos — Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.floating-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.floating-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.floating-nav a');
+            let current = '';
+            sections.forEach(s => {
+                const top = s.offsetTop - 200;
+                if (window.scrollY >= top) current = s.getAttribute('id');
+            });
+            navLinks.forEach(l => {
+                l.classList.remove('active');
+                if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
